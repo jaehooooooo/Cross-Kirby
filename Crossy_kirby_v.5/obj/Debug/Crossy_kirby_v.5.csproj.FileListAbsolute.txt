@@ -1,0 +1,7 @@
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\bin\Debug\Crossy_kirby_v.5.exe.config
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\bin\Debug\Crossy_kirby_v.5.exe
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\bin\Debug\Crossy_kirby_v.5.pdb
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.csproj.AssemblyReference.cache
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.csproj.CoreCompileInputs.cache
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.exe
+G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.pdb
