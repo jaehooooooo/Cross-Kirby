@@ -5,3 +5,10 @@ G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.c
 G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.csproj.CoreCompileInputs.cache
 G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.exe
 G:\Choi\3.Project\Crossy_kirby_v.5\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.pdb
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\bin\Debug\Crossy_kirby_v.5.exe.config
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\bin\Debug\Crossy_kirby_v.5.exe
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\bin\Debug\Crossy_kirby_v.5.pdb
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.csproj.AssemblyReference.cache
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.csproj.CoreCompileInputs.cache
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.exe
+G:\Choi\GitHub\Cross-Kirby\Crossy_kirby_v.5\obj\Debug\Crossy_kirby_v.5.pdb

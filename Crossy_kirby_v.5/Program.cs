@@ -28,7 +28,7 @@ namespace Crossy_Kirby_v._2
                 }
             }
         }
-        public void Timewatch() //무한 모드일때 시간 표시하기?
+        public void Timewatch() //무한 모드일때 시간 표시하기
         {
             for (int i = 0; i < 30; i++)
             {
@@ -51,11 +51,13 @@ namespace Crossy_Kirby_v._2
     }
     class GameManager
     {
+        // 지정된 위치에 String을 작성해주는 함수
         void WriteTool(int x, int y, string s)
         {
             SetCursorPosition(x, y);
             Write(s);
         }
+        // 무한모드일때 시간 표시
         public void Timeover()
         {
             Input input = new Input();
@@ -66,15 +68,16 @@ namespace Crossy_Kirby_v._2
 
         public static bool stage_1_clear, stage_2_clear, gameover, Uparrow , timeover, b_object_2,
                             ingame_start, Ingame_finish, kirby_damage;
-
+        // 게임 초기화
         public void Reset()
         {
+            // 플레이어 초기화
             kirby_life = KIRBY_LIFE; koopa_life = KIRBY_LIFE; ate_apple = 0;
             stage_1_clear = false; stage_2_clear = false; gameover = false; Uparrow = false; timeover = false; b_object_2 = false;
             ingame_start = false; Ingame_finish = false; kirby_damage = false;
-
+            // 두번째 오브젝트 비활성화
             Print.b_attack = false;
-
+            // 오브젝트 초기화
             Object.kirby_Match = false; Object_Double.kirby_Match = false;
             Object.object_x = 105; Object_Double.object_x = 105;
 
@@ -86,21 +89,18 @@ namespace Crossy_Kirby_v._2
             time.Start();
 
         }
+        // 게임 시작
         public void GameStart()
         {
-            //Input input = new Input();
             Print print = new Print();
             //// 스레드 타이머 시작
-            //ingame_start = true;
-            //Thread time = new Thread(Timeover);
-            //time.Start();
             //if 스레드 타이머가 3분을 넘었고 먹은 사과 갯수가 5개 이상일때 => stage_1_clear = true; break; 
             while (!stage_1_clear && !gameover && ingame_start) //스테이지 1 실행
             {
-
                 print.Stage_1_print();  // 스테이지 1 화면 출력
 
-                if (timeover && ate_apple >= 5 && Object.object_x <= 29)
+                // 
+                if (timeover && ate_apple >= 5 && Object.object_x <= 29)    
                 {
                     stage_1_clear = true;
                     break;
@@ -412,6 +412,8 @@ namespace Crossy_Kirby_v._2
             Write(s);
         }
     }
+
+    // 픽셀 아트를 화면에 출력
     class Print : GameManager
     {
         const int FULLSCREEN_X = 26, FULL_SCREEN_END_X = 116;
@@ -525,7 +527,6 @@ namespace Crossy_Kirby_v._2
             else Kirby_print();
 
             Thread.Sleep(150);
-            //Kirby_Erase();
             Console.ResetColor();
         }
         public void Stage_2_print()
@@ -2399,57 +2400,72 @@ namespace Crossy_Kirby_v._2
 
         }
     }
+
+    // 장애물과 아이템 출력
     class Object : GameManager
     {
+        // 오브젝트의 최초 생성 위치
         protected const int OBJECT_BOTTOM_X = 105,
                             OBJECT_BOTTOM_Y = 20,
                             PRINT_LEFT = 25;
+        // 오브젝트의 x좌표
         public static int object_x = OBJECT_BOTTOM_X;
         protected static int i = 0, j = 0, k = 0;
+        // 커비의 공격 유뮤 / 커비와 오브젝트의 접촉 여부 / 커비가 데미지 입음 여부
         public static bool attack_time = false, kirby_Match = false, kirby_hurt = false;
 
+        // 위치를 초기화 해주는 함수
         protected virtual void Move()
         {
+            // 오브젝트의 위치를 -4씩 이동시킴
             Object.object_x -= 4;
+            // Object의 X좌표가 화면 왼쪽보다 작으면 (화면 왼쪽을 넘어가면)
             if (object_x <= PRINT_LEFT)
             {
+                // 스테이지 클리어 여부
                 if (!GameManager.stage_1_clear)
                 {
+                    // x 위치 원위치
                     object_x = OBJECT_BOTTOM_X;
                 }
                 else
                 {
+                    // 화면 밖에 위치시키기
                     object_x = OBJECT_BOTTOM_X - 24;
                 }
             }
         }
+
+        // 스토리 모드 오브젝트 생성
         public void Make_Object()
         {
-
+            // 각 오브젝트 클래스 인스턴스화
             Thron thron = new Thron();
             Cloud cloud = new Cloud();
             Apple apple = new Apple();
 
             Random r = new Random();
 
-
+            // 오브젝트의 x 좌표가 화면 왼쪽보다 낮거나 커비와 오브젝트가 닿았다면 물체 위치 초기화 및 새로운 오브젝트 생성
             if (Object.object_x <= PRINT_LEFT + 4 || kirby_Match)
             {
+                // i에 새로운 변수 입력
                 i = r.Next();
                 kirby_hurt = false;
                 kirby_Match = false;
                 Object.object_x = PRINT_LEFT;
             }
+            else
             {
-                if (i % 6 < 3)
+                if (i % 6 < 3)  // 2/3 확률로 사과 아이템 생성 
                 {
                     apple.Move();
                 }
-                else if (i % 6 == 5)
+                else if (i % 6 == 5)  // 1/6 확률로 구름 장애물 생성
                 {
                     cloud.Move();
                 }
-                else
+                else  // 1/6 확률로 가시 장애물 생성
                 {
                     thron.Move();
                 }
@@ -2457,6 +2473,8 @@ namespace Crossy_Kirby_v._2
 
 
         }
+
+        // 보스 모드 아이템 생성
         public void Make_Object_2()
         {
             Print print = new Print();
@@ -2559,40 +2577,6 @@ namespace Crossy_Kirby_v._2
                 }
             }
         }
-        //public void Make_Object_2()
-        //{
-        //    Print print = new Print();
-        //    Attack attack = new Attack();
-        //    High_Fire high_Fire = new High_Fire();
-        //    Low_Fire low_Fire = new Low_Fire();
-        //    Random r = new Random();
-        //    if (!attack_time)
-        //    {
-        //        if (Object.object_x <= PRINT_LEFT + 4 || kirby_Match)
-        //        {
-        //            i = r.Next();
-        //            kirby_hurt = false;
-        //            kirby_Match = false;
-        //            Object.object_x = PRINT_LEFT;
-        //            j++;
-        //        }
-        //        if (i % 2 == 0)
-        //        {
-        //            high_Fire.Move();
-        //        }
-        //        else
-        //        {
-        //            low_Fire.Move();
-        //        }
-        //    }
-        //    if (j == 5) // 어떻게 충분한 시간을 줄지 생각해보기
-        //    {
-        //        attack_time = true;
-        //        WriteTool(5, 5, "쿠파가 지쳤어 지금이 공격할 타이밍이야!");
-        //        j = 0;
-        //    }
-
-        //}
         public void Erase_Object()
         {
             for (int i = 8; i < OBJECT_BOTTOM_Y + 3; i++)
@@ -2616,16 +2600,13 @@ namespace Crossy_Kirby_v._2
         }
         public void Damage()
         {
-            if (object_x <= PRINT_LEFT + 16)
+            // 오브젝트의 x 좌표가 커비의 x좌표 이고, 커비의 y 좌표가 오브젝트의 Y값과 같을 때 : 커비 체력 -=1
+            if (object_x <= PRINT_LEFT + 16 && GameManager.kirby_Y == OBJECT_BOTTOM_Y)
             {
-                if (GameManager.kirby_Y == OBJECT_BOTTOM_Y)
-                {
-                    GameManager.kirby_life -= 1;
-                    Object.kirby_Match = true;
-                    Object.kirby_hurt = true;
-                }
+                GameManager.kirby_life -= 1;
+                Object.kirby_Match = true;
+                Object.kirby_hurt = true;
             }
-            //객체의 x 좌표가 커비의 x좌표 일때 , 커비의 y 좌표가 (지정된 화면 하단) y값이 아닐때 : 커비 체력 -=1
         }
         public void Thorn_shape()
         {
